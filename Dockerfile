@@ -31,16 +31,7 @@ COPY . /doccano
 WORKDIR /doccano
 RUN tools/ci.sh
 
-FROM builder AS cleaner
-
-WORKDIR /doccano/app/server/static
-RUN SOURCE_MAP=False DEBUG=False npm run build \
- && rm -rf components pages node_modules .*rc package*.json webpack.config.js
-
-WORKDIR /doccano
-RUN python app/manage.py collectstatic --noinput
-
-FROM python:${PYTHON_VERSION}-slim-stretch AS runtime
+FROM python:3.6-slim-stretch AS runtime
 
 COPY --from=builder /doccano/tools/install-mssql.sh /doccano/tools/install-mssql.sh
 RUN /doccano/tools/install-mssql.sh
