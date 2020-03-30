@@ -45,7 +45,7 @@ COPY --from=builder /deps /deps
 # hadolint ignore=DL3013
 RUN pip install --no-cache-dir /deps/*.whl
 
-COPY --from=cleaner --chown=doccano:doccano /doccano /doccano
+#COPY --from=cleaner --chown=doccano:doccano /doccano /doccano
 
 VOLUME /data
 ENV DATABASE_URL="sqlite:////data/doccano.db"
