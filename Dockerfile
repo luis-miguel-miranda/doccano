@@ -1,5 +1,4 @@
-ARG PYTHON_VERSION="3.6"
-FROM python:${PYTHON_VERSION}-stretch AS builder
+FROM python:3.6-stretch AS builder
 
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
